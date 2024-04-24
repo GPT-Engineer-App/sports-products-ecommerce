@@ -1,5 +1,6 @@
-import { Box, Flex, Grid, Heading, Image, Text, Button, VStack, HStack, IconButton } from "@chakra-ui/react";
+import { Box, Grid, Heading, Image, Text, Button, VStack, HStack, IconButton, ButtonGroup } from "@chakra-ui/react";
 import { FaShoppingCart, FaHeart, FaSearch } from "react-icons/fa";
+import { useState } from "react";
 
 const products = [
   {
@@ -28,12 +29,20 @@ const products = [
   },
 ];
 
+const itemsPerPage = 4;
 const Index = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const maxPage = Math.ceil(products.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = products.slice(startIndex, endIndex);
+
   return (
     <Box p={5}>
       <Heading mb={4}>Sports Store</Heading>
       <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-        {products.map((product) => (
+        {currentItems.map((product) => (
           <Box key={product.id} borderWidth="1px" borderRadius="lg" overflow="hidden">
             <Image src={product.image} alt={product.name} />
             <Box p={5}>
@@ -54,6 +63,14 @@ const Index = () => {
           </Box>
         ))}
       </Grid>
+      <ButtonGroup variant="outline" spacing="6" mt="4">
+        <Button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+          Previous
+        </Button>
+        <Button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === maxPage}>
+          Next
+        </Button>
+      </ButtonGroup>
     </Box>
   );
 };
