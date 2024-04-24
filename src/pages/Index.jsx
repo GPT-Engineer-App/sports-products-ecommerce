@@ -29,10 +29,10 @@ const products = [
   },
 ];
 
-const itemsPerPage = 4;
+const itemsPerPage = 10;
 const Index = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const maxPage = Math.ceil(products.length / itemsPerPage);
+  const maxPage = Math.min(5, Math.ceil(products.length / itemsPerPage));
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
