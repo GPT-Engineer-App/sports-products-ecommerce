@@ -2,32 +2,12 @@ import { Box, Grid, Heading, Image, Text, Button, VStack, HStack, IconButton, Bu
 import { FaShoppingCart, FaHeart, FaSearch } from "react-icons/fa";
 import { useState } from "react";
 
-const products = [
-  {
-    id: 1,
-    name: "Basketball",
-    price: 25.99,
-    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsfGVufDB8fHx8MTcxMzk0NjIzNXww&ixlib=rb-4.0.3&q=80&w=1080",
-  },
-  {
-    id: 2,
-    name: "Football",
-    price: 19.99,
-    image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxmb290YmFsbHxlbnwwfHx8fDE3MTM5NDYyMzV8MA&ixlib=rb-4.0.3&q=80&w=1080",
-  },
-  {
-    id: 3,
-    name: "Tennis Racket",
-    price: 75.5,
-    image: "https://images.unsplash.com/photo-1622163642998-1ea32b0bbc67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHx0ZW5uaXMlMjByYWNrZXR8ZW58MHx8fHwxNzEzOTQ2MjM2fDA&ixlib=rb-4.0.3&q=80&w=1080",
-  },
-  {
-    id: 4,
-    name: "Running Shoes",
-    price: 85.0,
-    image: "https://images.unsplash.com/photo-1562183241-b937e95585b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxydW5uaW5nJTIwc2hvZXN8ZW58MHx8fHwxNzEzOTQ2MjM2fDA&ixlib=rb-4.0.3&q=80&w=1080",
-  },
-];
+const products = Array.from({ length: 50 }, (_, index) => ({
+  id: index + 1,
+  name: ["Basketball", "Football", "Tennis Racket", "Running Shoes"][index % 4],
+  price: [25.99, 19.99, 75.5, 85.0][index % 4],
+  image: ["https://images.unsplash.com/photo-1546519638-68e109498ffc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsfGVufDB8fHx8MTcxMzk0NjIzNXww&ixlib=rb-4.0.3&q=80&w=1080", "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxmb290YmFsbHxlbnwwfHx8fDE3MTM5NDYyMzV8MA&ixlib=rb-4.0.3&q=80&w=1080", "https://images.unsplash.com/photo-1622163642998-1ea32b0bbc67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHx0ZW5uaXMlMjByYWNrZXR8ZW58MHx8fHwxNzEzOTQ2MjM2fDA&ixlib=rb-4.0.3&q=80&w=1080", "https://images.unsplash.com/photo-1562183241-b937e95585b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxydW5uaW5nJTIwc2hvZXN8ZW58MHx8fHwxNzEzOTQ2MjM2fDA&ixlib=rb-4.0.3&q=80&w=1080"][index % 4],
+}));
 
 const itemsPerPage = 10;
 const Index = () => {
